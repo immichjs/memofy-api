@@ -22,6 +22,7 @@ export class FlashcardsService {
 	// Buscar todos os flashcards que precisam ser revisados
 	async getFlashcardsForReview(): Promise<Flashcard[]> {
 		const today = new Date()
+		today.setHours(0, 0, 0, 0)
 		return this.flashcardModel.find({ nextReview: { $lte: today } }).exec()
 	}
 
